@@ -3,12 +3,14 @@
 int load_file(LOGIN* list[], char* filename){
   int count=0;
   FILE *datafile = fopen(filename, "r");
-  while(!feof(datafile)){
+  while(1){
     list[count]=(LOGIN*)malloc(sizeof(LOGIN));
     fscanf(datafile,"%s %s",list[count]->id,list[count]->password);
+    if (feof(datafile))
+	break;
     count++;
   }
-  printf("%d records read!\n",count);\
+  printf("Welcome!! %d records read!\n",count);\
   fclose(datafile);
   return count;
 }
@@ -80,7 +82,7 @@ int login(LOGIN* list[], int count){
 
 void logout(int* is_login){
   *is_login = 0;
-  printf("Logout!!\n");
+  printf("Bye!!\n");
 }
 
 void save_file(LOGIN* list[], int count, char* filename){

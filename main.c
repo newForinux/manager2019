@@ -4,7 +4,7 @@
 int main(int argc, char* argv[]) {
   LOGIN* userlist[100]; // 사용자목록 포인터 배열 (최대 100)
   int is_login=0; // 로그인 여부 (0 NO, 1 Yes)
-  int menu_id, new_file;
+  int new_file;
   char command_user[100];
   int count = 0, *count_point;
   int ch = 0;
@@ -23,7 +23,6 @@ int main(int argc, char* argv[]) {
 	count = load_file (userlist, argv[1]); 
   }
   count_point = &count;
-  printf ("Welcome!!\n");
 
   while(1){
     if (is_login != 1) {
@@ -48,7 +47,7 @@ int main(int argc, char* argv[]) {
 	fgets (command_user, 99, stdin);
 	if (strncmp(command_user, "logout", 6) == 0)
 	    logout(&is_login);
-	printf ("%s", command_user);
+	if (is_login == 1) printf ("%s", command_user);
     }
   }
   return 0;
