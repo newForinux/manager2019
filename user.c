@@ -1,6 +1,9 @@
 #include "user.h"
 
 int load_file(LOGIN* list[], char* filename){
+  #ifdef DEBUG_MODE
+    printf ("DEBUG>> datafile opened! \n");
+  #endif
   int count=0;
   FILE *datafile = fopen(filename, "r");
   while(1){
