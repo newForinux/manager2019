@@ -13,13 +13,13 @@ int load_file(LOGIN* list[], char* filename){
   return count;
 }
 
-void join(LOGIN* list[], int count){
+void join(LOGIN* list[], int * count_point){
   char id[20], pass[20];
   while(1){
     printf("Enter new user id >> ");
     scanf("%s", id);
     int dup=0;
-    for(int i=0;i<count;i++){
+    for(int i=0;i<*count_point;i++){
       if(strcmp(id, list[i]->id)==0) {
         dup=1; break;
       }
@@ -30,13 +30,22 @@ void join(LOGIN* list[], int count){
     else{
       printf("Enter password >> ");
       scanf("%s", pass);
-      list[count] = (LOGIN*)malloc(sizeof(LOGIN));
-      strcpy(list[count]->id, id);
-      strcpy(list[count]->password, pass);
+      getchar();
+      list[*count_point] = (LOGIN*)malloc(sizeof(LOGIN));
+      strcpy(list[*count_point]->id, id);
+      strcpy(list[*count_point]->password, pass);
       printf("New user added!\n");
+      *count_point += 1;
       break;
     }
   }
+}
+
+void list_user(LOGIN * list[], int count) {
+    printf ("\nUser list (id/password)\n");
+    for (int i = 0; i < count; i++) {
+	printf ("[%d] %s / %s\n", i+1, list[i]->id, list[i]->password);
+    }
 }
 
 int login(LOGIN* list[], int count){

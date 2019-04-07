@@ -17,7 +17,8 @@ typedef struct login {
 } LOGIN;
 
 int load_file(LOGIN* list[], char* filename);
-void join(LOGIN* list[], int count);
+void join(LOGIN* list[], int * count_point);
 int login(LOGIN* list[], int count);
+void list_user(LOGIN* list[], int count);
 void logout(int* is_login);
 void save_file(LOGIN* list[], int count, char* filename);
